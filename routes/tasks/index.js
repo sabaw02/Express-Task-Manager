@@ -1,5 +1,6 @@
 const express = require("express");
 const crypto = require("crypto");
+const { uploader } = require("../../utils/files.utils");
 
 const tasksRouter = express.Router();
 
@@ -87,11 +88,21 @@ tasksRouter.put("/updateTasks/:id", (request, response) => {
 });
 
 // delete task
-
 tasksRouter.delete("/deleteTask/:id", (request, response) => {
   const id = request.params.id;
   allData = allData.filter((el) => el.id != id);
   response.json({ message: "done", allData });
 });
+
+// attache file to task
+tasksRouter.post(
+  "/attachment",
+  uploader.single("file"),
+  (request, response) => {
+    const file = request.file;
+    // console.log("file", file);
+    response.send(`files/${file.filename}`);
+  },
+);
 
 module.exports = { tasksRouter };
