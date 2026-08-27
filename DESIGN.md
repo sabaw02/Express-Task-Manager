@@ -14,6 +14,10 @@ POST ====> "/task/createTask" ====> title / isComplete = false
 
 PUT ====> "/task/updateTask" ====> title / desc / isComplete / duration / category / priority / img
 
+# Delete task
+
+DELETE ====> "/task/deleteTask"
+
 # Add image for each task
 
 POST ====> "/image" ====> img
